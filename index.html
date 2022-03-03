@@ -192,13 +192,15 @@
         let correct = 0;
         // test for any green letters first, then test again for oranges after removed correct from string
         for (let i = 0; i < guess.length; i++) {
-            let style = document.getElementById(`guess1letter${i + 1}`).style;
+            const input = document.getElementById(`guess1letter${i + 1}`);
+            let style = input.style;
             if (guess[i] === answerTemp[i]) {
                 style.background = "green";
                 style.border = "0.1em solid green";
                 correct += 1;
                 answerTemp = blank(answerTemp, i);
                 guess = blank(guess, i);
+                input.placeholder = answer[i];
                 // console.log(1, answerTemp);
             }
         }
@@ -340,7 +342,18 @@
     input:focus {
         outline: none;
     }
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: green;
+        opacity: 1; /* Firefox */
+    }
 
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: green;
+    }
+
+    ::-ms-input-placeholder { /* Microsoft Edge */
+        color: green;
+    }
     #stopwatch {
         font-size: xx-large;
     }
